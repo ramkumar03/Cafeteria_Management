@@ -1,5 +1,7 @@
 class MenuCategory < ActiveRecord::Base
-  def to_pleasant_string
+  has_many :menu_items
+
+  def to_category
     "#{id}. #{name} | Available: #{status}"
   end
 end
