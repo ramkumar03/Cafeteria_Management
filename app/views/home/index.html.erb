@@ -1,0 +1,15 @@
+<main class="HomePageMain">
+<div class="HomePage-hero">Cafe.in</div>
+
+<div class="HomePage-Section">
+    If you are a New User, <%= link_to "Sign-Up here",
+                                       new_user_path,
+                                       class: "HomeSection-link" %>
+</div>
+
+<div class="HomePage-Section">
+    If you are an Existing User, <%= link_to "Sign-in here",
+                                             new_sessions_path,
+                                             class: "HomeSection-link" %>
+</div>
+</main>

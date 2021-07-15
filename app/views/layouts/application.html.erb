@@ -6,11 +6,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+    <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
   </head>
 
   <body>
+  <% if @current_user.present? %>
+      <div class="UserSessionBlock">
+        <span class="UserSession-name"><%= @current_user.first_name.capitalize + " " + @current_user.last_name.capitalize %></span>
+        <%= link_to "Sign out",
+                    destroy_session_path,
+                    class: "UsersForm-Submit",
+                    method: "DELETE" %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
