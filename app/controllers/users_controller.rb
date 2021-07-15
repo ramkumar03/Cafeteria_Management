@@ -14,6 +14,6 @@ class UsersController < ApplicationController
       role: "customer",
     )
 
-    redirect_to "/menu_categories"
+    redirect_to "/signin"
   end
 end
