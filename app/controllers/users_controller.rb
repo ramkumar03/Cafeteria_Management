@@ -1,6 +1,19 @@
 class UsersController < ApplicationController
-  def index
-    user = User.all.map { |user| user.to_userlist }.join("\n")
-    render plain: user
+  skip_before_action :verify_authenticity_token
+
+  def new
+    render "users/new"
+  end
+
+  def create
+    User.create!(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      email: params[:email],
+      password: params[:password],
+      role: "customer",
+    )
+
+    redirect_to "/menu_categories"
   end
 end

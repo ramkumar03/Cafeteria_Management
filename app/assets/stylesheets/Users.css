@@ -1,0 +1,53 @@
+.UsersNewPage {
+  font-family: sans-serif;
+  margin: 2%;
+  padding: 3%;
+  line-height: 1;
+  max-width: 460px;
+  letter-spacing: 0.1px;
+  background-color: rgb(211, 221, 255);
+  box-shadow: 1px 10px 20px #aaaaaa;
+  border-radius: 20px;
+}
+.UsersNew-Title {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(136, 123, 192);
+}
+
+.UsersForm {
+  margin: 5%;
+  padding: 5%;
+  background-color: rgb(255, 253, 246);
+  display: flex;
+  text-align: center;
+  box-shadow: 1px 10px 20px #aaaaaa;
+  border-radius: 20px;
+}
+.UsersForm-section {
+  margin: 5%;
+  text-align: left;
+  font-size: 16px;
+  color: #453c52;
+}
+.UsersForm-input {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #726a7e;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 1px solid #bfb8cc;
+}
+.UsersForm-Submit {
+  font-size: 14px;
+  color: white;
+  background-color: #48bb78;
+  border: 1px solid transparent;
+  padding: 6px 22px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.UsersForm-Submit:hover {
+  transition: background-color 0.5s;
+  background-color: dodgerblue;
+}
