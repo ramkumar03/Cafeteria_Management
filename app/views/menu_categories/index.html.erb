@@ -1,10 +1,16 @@
-<h1>Menu Category</h1>
+<main class="MenuCategoryPage">
+<p class = "MenuTitle">Menu Today</p>
 
 <% MenuCategory.all.map do |category| %>
-    <h2><%= category.name %></h2>
-    <ul>
+
+    <ul class="MenuCategory-Section">
+        <p class="MenuCategory-Title"><%= category.name %></p>
         <% MenuItem.get_items(category.id).map do |item| %>
-            <li><%= item.to_menu %></li>
+           <li class= "MenuItem">
+             <span class="MenuItem-title"><%= item.name %></span>
+                <span class="MenuItem-price">₹ <%= item.price %></span>
+            </li>
         <% end %>
     </ul>
 <% end %>
+</main>

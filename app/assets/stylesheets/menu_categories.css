@@ -1,0 +1,43 @@
+.MenuCategoryPage {
+  font-family: sans-serif;
+  margin: 2%;
+  padding: 3%;
+  line-height: 1;
+  max-width: 460px;
+  letter-spacing: 0.1px;
+  letter-spacing: 0.1px;
+  background-color: rgb(211, 221, 255);
+  box-shadow: 1px 10px 20px #aaaaaa;
+  border-radius: 20px;
+}
+.MenuCategory-Title {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(136, 123, 192);
+}
+.MenuCategory-Section {
+  margin: 3%;
+  padding: 2%;
+  background-color: rgb(240, 236, 255);
+  box-shadow: 1px 10px 20px #aaaaaa;
+  border-radius: 20px;
+}
+.MenuTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: dodgerblue;
+}
+
+.MenuItem {
+  font-size: 18px;
+  margin: 2%;
+}
+
+.MenuItem-title,
+.MenuItem-price {
+  color: rgb(68, 59, 109);
+  margin: 0 5%;
+}
+.MenuItem-price {
+  color: rgb(21, 107, 0);
+}
