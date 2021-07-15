@@ -1,0 +1,10 @@
+<h1>Menu Category</h1>
+
+<% MenuCategory.all.map do |category| %>
+    <h2><%= category.name %></h2>
+    <ul>
+        <% MenuItem.get_items(category.id).map do |item| %>
+            <li><%= item.to_menu %></li>
+        <% end %>
+    </ul>
+<% end %>
