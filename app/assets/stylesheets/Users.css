@@ -1,9 +1,9 @@
 .UsersNewPage {
   font-family: sans-serif;
-  margin: 2%;
+  margin: 2% auto;
   padding: 3%;
   line-height: 1;
-  max-width: 460px;
+  max-width: 900px;
   letter-spacing: 0.1px;
   background-color: rgb(211, 221, 255);
   box-shadow: 1px 10px 20px #aaaaaa;

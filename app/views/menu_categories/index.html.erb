@@ -1,16 +1,37 @@
 <main class="MenuCategoryPage">
-<p class = "MenuTitle">Menu Today</p>
+    <p class = "MenuTitle">Menu Today</p>
 
-<% MenuCategory.all.map do |category| %>
+    <% MenuCategory.all.each do |category| %>
 
-    <ul class="MenuCategory-Section">
-        <p class="MenuCategory-Title"><%= category.name %></p>
-        <% MenuItem.get_items(category.id).map do |item| %>
-           <li class= "MenuItem">
-             <span class="MenuItem-title"><%= item.name %></span>
-                <span class="MenuItem-price">₹ <%= item.price %></span>
-            </li>
-        <% end %>
-    </ul>
-<% end %>
+
+        <div class="MenuCategory-Title">
+            <%= category.name %>
+        </div>
+
+        <ul class="MenuCategory-Section">
+
+            <% MenuItem.get_menu_items(category.id).map do |item| %>
+
+                <% if item.availability %>
+
+                    <li class= "MenuItem">
+
+                        <div class="MenuItem-header">
+                            <span class="MenuItem-title"><%= item.name %></span>
+                            <span class="MenuItem-price">₹ <%= item.price %></span>
+                            <%= button_tag("Add to cart",
+                                           type: "button",
+                                           class: "UsersForm-Submit") %>
+                        </div>
+
+                        <p class="MenuItem-description"><%= item.description %></p>
+                    </li>
+
+                <% end %>
+            <% end %>
+
+        </ul>
+    <% end %>
+
+
 </main>
