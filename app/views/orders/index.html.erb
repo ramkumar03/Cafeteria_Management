@@ -1,0 +1,31 @@
+<main class="OrderPageMain">
+<p class="OrderTitle">Orders So Far</p>
+
+<div class="OrdersTable">
+    <div class="OrdersTable-Title">
+        <span>Invoice</span>
+        <span>Ordered At</span>
+        <span>Delivery Status</span>
+    </div>
+
+    <% @orders.each_with_index do |order, index| %>
+        <div class="OrderItem">
+
+            <span>
+              <%= link_to "Order #{order.id}",
+                          order_items_path(id: order.id),
+                          method: "GET",
+                          class: "UsersForm-Submit" %>
+            </span>
+            <span class="OrderItem-date">
+              <%= order.ordered_at.to_s(:long) %>
+            </span>
+            <span>
+              <span class="OrderItem-date">
+                <%= order.delivered_at ? order.delivered_at.to_s(:short) : "pending delivery" %>
+              </span>
+            </span>
+        </div>
+    <% end %>
+</div>
+</main>

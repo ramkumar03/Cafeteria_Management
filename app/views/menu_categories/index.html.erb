@@ -1,4 +1,4 @@
-<main class="MenuCategoryPage">
+<section class="MenuCategoryPage">
     <p class = "MenuTitle">Menu Today</p>
 
     <% MenuCategory.all.each do |category| %>
@@ -19,9 +19,12 @@
                         <div class="MenuItem-header">
                             <span class="MenuItem-title"><%= item.name %></span>
                             <span class="MenuItem-price">₹ <%= item.price %></span>
-                            <%= button_tag("Add to cart",
-                                           type: "button",
-                                           class: "UsersForm-Submit") %>
+
+                            <%= form_with(url: "/cart_items?menu_item_id=#{item.id}",
+                                          method: "POST") do %>
+                                <%= submit_tag("Add to cart",
+                                               class: "UsersForm-Submit") %>
+                            <% end %>
                         </div>
 
                         <p class="MenuItem-description"><%= item.description %></p>
@@ -34,4 +37,70 @@
     <% end %>
 
 
-</main>
+</section>
+
+<section class="CartCategoryPage">
+    <p class="MenuTitle">Cart</p>
+
+
+
+        <div <%= @cart_items.present? ? "class=CartSection" : "style=display:none" %>>
+
+            <p>Total: ₹<%= CartItem.total_amount(@current_user.id) %></p>
+            <%= form_with(url: cart_clear_path,
+                          method: "DELETE",
+                          class: "CartClear") do %>
+                <%= submit_tag("Clear", class: "UsersForm-cartbutton") %>
+            <% end %>
+            <%= form_with(url: "/orders/#{CartItem.total_amount(@current_user.id)}",
+                          method: "POST",
+                          class: "Checkout") do %>
+                <%= submit_tag("Checkout", class: "UsersForm-Submit") %>
+            <% end %>
+
+        </div>
+
+    <% if @cart_items.present? %>
+        <div class ="Cart-section">
+            <% @cart_items.each do |cartitem| %>
+                <% item = MenuItem.find(cartitem.menu_item_id) %>
+
+                <div class="CartItem-section">
+
+                    <span class="MenuItem-title">
+                        <%= item.name %>
+                    </span>
+
+                    <div class="CartQuantity">
+                        <%= form_with(url: update_quantity_path(id: cartitem.id, quantity: -1),
+                                      method: "PUT") do %>
+                            <%= submit_tag("-", class: "UsersForm-cartbutton") %>
+                        <% end %>
+
+                        <span class="MenuItem-title">
+                            <%= cartitem.quantity %>
+                        </span>
+
+                        <%= form_with(url: update_quantity_path(id: cartitem.id, quantity: 1),
+                                      method: "PUT") do %>
+                            <%= submit_tag("+", class: "UsersForm-Submit") %>
+                        <% end %>
+                    </div>
+
+                    <span class="MenuItem-price">
+                        ₹<%= item.price * cartitem.quantity %>
+                    </span>
+
+                </div>
+            <% end %>
+        </div>
+    <% else %>
+    <div class="CartEmpty-section">
+        <p class="MenuTitle">Your Cart is empty</p>
+    </div>
+
+    <% end %>
+
+
+
+</section>

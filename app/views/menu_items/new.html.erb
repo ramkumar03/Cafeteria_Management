@@ -1,0 +1,44 @@
+<main class="UsersNewPage">
+	<div class="UsersNew-Title">Add Menu Items
+			<%= link_to "Home", "/",
+               class: "UsersForm-home" %>
+	</div>
+
+	<section class="UsersForm">
+		<%= form_with(url: create_menu_category_path) do |menuitem| %>
+
+			<div class="UsersForm-section">
+				<p>Category: </p>
+				<%= menuitem.text_field :category,
+                            class: "UsersForm-input",
+                            autofocus: true %>
+			</div>
+
+      <div class="UsersForm-section">
+				<p>	Item Name: </p>
+				<%= menuitem.text_field :name,
+                            class: "UsersForm-input" %>
+			</div>
+
+			<div class="UsersForm-section">
+					<p>Price(INR): </p>
+			<%= menuitem.number_field :price,
+                             class: "UsersForm-input" %>
+			</div>
+
+			<div class="UsersForm-section">
+				<p>Description:</p>
+				<%= menuitem.text_area :description,
+                           class: "UsersForm-input" %>
+			</div>
+
+			<div class="UsersForm-section">
+				<%= menuitem.submit "Add Item to Menu",
+                        class: "UsersForm-Submit" %>
+			</div>
+		<% end %>
+	</section>
+
+
+
+</main>

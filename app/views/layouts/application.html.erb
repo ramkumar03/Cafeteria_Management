@@ -11,14 +11,34 @@
   </head>
 
   <body>
-  <% if @current_user.present? %>
+    <% if @current_user.present? %>
       <div class="UserSessionBlock">
-        <span class="UserSession-name"><%= @current_user.first_name.capitalize + " " + @current_user.last_name.capitalize %></span>
+        <span style="width: 600px">
+          <span class="UserSession-name">
+            <%= @current_user.first_name.capitalize + " " + @current_user.last_name.capitalize %>
+          </span>
+         <%= link_to "My Orders",
+                     orders_path,
+                     class: "UsersForm-cartbutton" %>
+          <%= link_to "Menu",
+                      menu_categories_path,
+                      class: "UsersForm-menubutton" %>
+          <%= link_to "Edit Menu",
+                      new_menu_item_path,
+                      method: "GET",
+                      class: "UsersForm-menubutton" %>
+        </span>
+
         <%= link_to "Sign out",
                     destroy_session_path,
                     class: "UsersForm-Submit",
                     method: "DELETE" %>
+
+
       </div>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="FlashMessage"><%= flash[:error] %></p>
     <% end %>
     <%= yield %>
   </body>

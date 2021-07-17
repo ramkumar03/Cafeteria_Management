@@ -1,0 +1,28 @@
+<main class="OrderPageMain">
+    <p class="OrderTitle">Invoices</p>
+        <div class="OrdersTable">
+            <div class="OrdersTable-Title">
+                <span>Item</span>
+                <span>quantity</span>
+                <span>Total cost</span>
+            </div>
+
+            <% @order_items.each do |item| %>
+                <div class="CartItems">
+                    <span><%= item.menu_item_name %></span>
+                    <span><%= item.quantity %></span>
+                    <span>₹<%= item.quantity * item.menu_item_price %></span>
+                </div>
+            <% end %>
+        </div>
+        <div class="Order-details">
+            <div class="OrderItem-price">
+                <span class="OrdersDetail-title">Total: </span>₹<%= @order_items.first.total_amount %>
+            </div>
+
+            <div class="OrderItem-description">
+                <p class="OrdersDetail-title">Delivered to:</p>
+                <p><%= @current_user.deliver_address %></p>
+            </div>
+        </div>
+</main>

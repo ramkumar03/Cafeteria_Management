@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       session[:current_user_id] = user.id
       redirect_to menu_categories_path
     else
+      flash[:error] = "Invalid User Login. Try again!"
       redirect_to new_sessions_path
     end
   end

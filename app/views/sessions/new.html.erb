@@ -1,23 +1,27 @@
 <main class="UsersNewPage">
-<p class="UsersNew-Title">Sign input</p>
+	<div class="UsersNew-Title">Sign in
+		<%= link_to "Home", "/",
+									class: "UsersForm-home" %>
+	</div>
 
-<section class="UsersForm">
-	<%= form_with(url: sessions_path) do |form| %>
 
-		<div class="UsersForm-section">
-				<p>Email:</p>
-		<%= form.email_field :email, class: "UsersForm-input" %>
-		</div>
+	<section class="UsersForm">
+		<%= form_with(url: sessions_path) do |form| %>
 
-		<div class="UsersForm-section">
-			<p>Password:</p>
-			<%= form.password_field :password, class: "UsersForm-input" %>
-		</div>
+			<div class="UsersForm-section">
+					<p>Email:</p>
+			<%= form.email_field :email, class: "UsersForm-input" %>
+			</div>
 
-		<div class="UsersForm-section">
-		  <%= form.submit "Sign In", class: "UsersForm-Submit" %>
-		</div>
-	<% end %>
-</section>
+			<div class="UsersForm-section">
+				<p>Password:</p>
+				<%= form.password_field :password, class: "UsersForm-input" %>
+			</div>
+
+			<div class="UsersForm-section">
+				<%= form.submit "Sign In", class: "UsersForm-Submit" %>
+			</div>
+		<% end %>
+	</section>
 
 </main>

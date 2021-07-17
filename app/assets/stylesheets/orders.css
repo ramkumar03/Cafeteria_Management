@@ -1,0 +1,96 @@
+.OrderPageMain {
+  font-family: sans-serif;
+  margin: 2%;
+  margin: inherit auto;
+  padding: 3%;
+  line-height: 1;
+  max-width: 100%;
+  letter-spacing: 0.1px;
+  background-color: rgb(211, 221, 255);
+  box-shadow: 1px 10px 20px #aaaaaa;
+  border-radius: 20px;
+}
+
+.OrdersTable {
+  padding: 2%;
+  background-color: lavenderblush;
+  box-shadow: 1px 10px 20px #aaaaaa;
+  border-radius: 20px;
+}
+
+.OrdersTable-Title {
+  background-color: ivory;
+  box-shadow: 1px 10px 20px #aaaaaa;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(136, 123, 192);
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+
+  border-radius: 20px;
+}
+.OrdersDetail-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(136, 123, 192);
+  padding: 2%;
+}
+.Orders-Section {
+  margin: 3%;
+  padding: 2%;
+  background-color: rgb(213, 244, 255);
+  box-shadow: 1px 10px 20px #aaaaaa;
+  border-radius: 20px;
+}
+.OrderItem span {
+  max-width: 100px;
+}
+.OrderTitle {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 3%;
+  color: dodgerblue;
+}
+.OrderItem-description {
+  font-size: 16px;
+  margin: 5%;
+}
+.OrderItem,
+.CartItems {
+  align-items: center;
+  font-size: 18px;
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px dimgray;
+}
+
+.OrderItem > span {
+  max-width: 150px;
+}
+.CartItems > span {
+  max-width: 50px;
+}
+.OrderItem-text {
+  color: rgb(68, 59, 109);
+  text-align: center;
+}
+.OrderItem-price {
+  color: rgb(40, 100, 28);
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+}
+.OrderItem-date {
+  color: rgb(20, 0, 56);
+  line-height: 150%;
+  text-align: center;
+}
+.Order-details {
+  margin-top: 5%;
+  padding: 5%;
+  font-size: 18px;
+  border-radius: 20px;
+  background-color: ivory;
+}
