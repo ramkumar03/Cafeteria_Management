@@ -1,13 +1,19 @@
 <% menu_categories.order(:id).each do |category| %>
 
         <div class="MenuCategory-Title">
-        <span><%= category.name %></span>
+            <span>
+                <%= category.name %>
 
-          <%= form_with(url: "/menu_categories/#{category.id}",
-                        method: "PUT") do %>
+            </span>
+
+
+            <%= form_with(url: "/menu_categories/#{category.id}",
+                          method: "PUT") do %>
             <%= submit_tag(category.status ? "disable" : "enable",
                            class: category.status ? "UsersForm-cartbutton" : "UsersForm-Submit") %>
-        <% end %>
+            <% end %>
+
+
         </div>
 
 

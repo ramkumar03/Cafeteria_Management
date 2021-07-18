@@ -19,62 +19,82 @@
 
 
 
-        <div <%= @cart_items.present? ? "class=CartSection" : "style=display:none" %>>
 
-            <p>Total: ₹<%= CartItem.total_amount(@current_user.id) %></p>
-            <%= form_with(url: cart_clear_path,
-                          method: "DELETE",
-                          class: "CartClear") do %>
-                <%= submit_tag("Clear", class: "UsersForm-cartbutton") %>
-            <% end %>
-            <%= form_with(url: "/orders/#{CartItem.total_amount(@current_user.id)}",
-                          method: "POST",
-                          class: "Checkout") do %>
-                <%= submit_tag("Checkout", class: "UsersForm-Submit") %>
-            <% end %>
-
-        </div>
 
     <% if @cart_items.present? %>
         <div class ="Cart-section">
-            <% @cart_items.each do |cartitem| %>
+            <% @cart_items.order(:created_at).each do |cartitem| %>
                 <% item = MenuItem.find(cartitem.menu_item_id) %>
 
-                <div class="CartItem-section">
 
-                    <span class="MenuItem-title">
-                        <%= item.name %>
-                    </span>
-
-                    <div class="CartQuantity">
-                        <%= form_with(url: update_quantity_path(id: cartitem.id, quantity: -1),
-                                      method: "PUT") do %>
-                            <%= submit_tag("-", class: "UsersForm-cartbutton") %>
-                        <% end %>
+                    <div class="CartItem-section">
 
                         <span class="MenuItem-title">
-                            <%= cartitem.quantity %>
+                            <%= item.name %>
                         </span>
 
-                        <%= form_with(url: update_quantity_path(id: cartitem.id, quantity: 1),
-                                      method: "PUT") do %>
-                            <%= submit_tag("+", class: "UsersForm-Submit") %>
-                        <% end %>
+                        <div class="CartQuantity">
+                            <%= form_with(url: update_quantity_path(id: cartitem.id, quantity: -1),
+                                          method: "PUT") do %>
+                                <%= submit_tag("-", class: "UsersForm-cartbutton") %>
+                            <% end %>
+
+                            <span class="MenuItem-title">
+                                <%= cartitem.quantity %>
+                            </span>
+
+                            <%= form_with(url: update_quantity_path(id: cartitem.id, quantity: 1),
+                                          method: "PUT") do %>
+                                <%= submit_tag("+", class: "UsersForm-Submit") %>
+                            <% end %>
+                        </div>
+
+                        <span class="MenuItem-price">
+                            ₹<%= item.price * cartitem.quantity %>
+                        </span>
+
                     </div>
 
-                    <span class="MenuItem-price">
-                        ₹<%= item.price * cartitem.quantity %>
-                    </span>
 
-                </div>
             <% end %>
+
+
         </div>
+
+        <div class="CartSection">
+
+        <div style="display: flex; justify-content: space-between;">
+        <p>Total: ₹<%= CartItem.total_amount(@current_user.id) %></p>
+                <%= form_with(url: cart_clear_path,
+                              method: "DELETE",
+                              class: "CartClear") do %>
+                    <%= submit_tag("Clear", class: "UsersForm-cartbutton") %>
+                <% end %>
+        </div>
+        <div style="display: flex; justify-content: space-around;margin:10%;">
+        Address: -
+        <%= form_with(url: "/orders/#{CartItem.total_amount(@current_user.id)}",
+                      method: "POST",
+                      class: "Checkout") do |userorder| %>
+
+        <%= userorder.text_area :deliver_address, size: "50x8" %>
+
+        </div>
+
+        <%= userorder.submit "Checkout", class: "UsersForm-Submit" %>
+
+        <% end %>
+
+
+    </div>
     <% else %>
     <div class="CartEmpty-section">
         <p class="MenuTitle">Your Cart is empty</p>
     </div>
 
     <% end %>
+
+
 
 
 

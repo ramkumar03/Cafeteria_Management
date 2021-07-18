@@ -54,7 +54,7 @@
 }
 .CartSection {
   font-size: 20px;
-  display: flex;
+  display: block;
   justify-content: space-between;
   padding: 3%;
   margin: 2%;

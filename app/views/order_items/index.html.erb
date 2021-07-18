@@ -22,7 +22,10 @@
 
             <div class="OrderItem-description">
                 <p class="OrdersDetail-title">Delivered to:</p>
-                <p><%= @current_user.deliver_address %></p>
+                <div style="margin-left:20%;">
+                <p><%= User.find(Order.find(@order_items.first.order_id).user_id).first_name.capitalize + " " %></p>
+                <p><%= Order.find(@order_items.first.order_id).deliver_address %></p>
+                </div>
             </div>
         </div>
 </main>

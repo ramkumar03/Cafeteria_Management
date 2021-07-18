@@ -17,11 +17,10 @@ class CartItemsController < ApplicationController
   def update
     item = CartItem.find(params[:id])
     quantity = params[:quantity].to_i
-
-    if item.quantity == 1 and quantity == -1
+    item.quantity += quantity
+    if item.quantity == 0
       CartItem.destroy(params[:id])
     else
-      item.quantity += quantity
       item.save!
     end
 

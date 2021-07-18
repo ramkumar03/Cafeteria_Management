@@ -2,7 +2,7 @@ class OrderItemsController < ApplicationController
   def index
     if Order.where(id: params[:id]).present?
       order = Order.find(params[:id])
-      if order.user_id == @current_user.id
+      if order.user_id == @current_user.id || @current_user.role != "customer"
         @order_items = order.order_items
         render "index"
       else

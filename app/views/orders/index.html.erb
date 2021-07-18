@@ -4,11 +4,15 @@
 <div class="OrdersTable">
     <div class="OrdersTable-Title">
         <span>Invoice</span>
+        <% if @current_user.role != "customer" %>
+            <span>Ordered By</span>
+        <% end %>
         <span>Ordered At</span>
         <span>Delivery Status</span>
+
     </div>
 
-    <% @orders.each_with_index do |order, index| %>
+    <% @orders.order(:ordered_at).each_with_index do |order, index| %>
         <div class="OrderItem">
 
             <span>
@@ -17,13 +21,28 @@
                           method: "GET",
                           class: "UsersForm-Submit" %>
             </span>
+            <% if @current_user.role != "customer" %>
+            <span ><%= User.find(order.user_id).first_name %></span>
+        <% end %>
             <span class="OrderItem-date">
               <%= order.ordered_at.to_s(:long) %>
             </span>
+
+
             <span>
               <span class="OrderItem-date">
                 <%= order.delivered_at ? order.delivered_at.to_s(:short) : "pending delivery" %>
               </span>
+
+              <% if @current_user.role != "customer" %>
+                <span><%= form_with(url: "/orders/#{order.id}",
+                                    method: "PUT") do %>
+                        <%= submit_tag(order.delivered_at ? "Delivered" : "Set Delivered",
+                                       disabled: order.delivered_at ? true : false,
+                                       class: "UsersForm-cartbutton") %>
+                    <% end %>
+                </span>
+            <% end %>
             </span>
         </div>
     <% end %>

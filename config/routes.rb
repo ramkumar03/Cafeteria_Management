@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get "/orders", to: "orders#index"
   post "/orders/:total_amount", to: "orders#create"
+  put "/orders/:id", to: "orders#update"
 
   get "/order_items", to: "order_items#index"
   get "/create_order_item", to: "order_items#create", as: :create_order_item

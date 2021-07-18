@@ -28,8 +28,9 @@ class MenuCategoriesController < ApplicationController
         end
       end
     else
-      MenuCategory.find(category.id).update(name: params[:newcategory])
-
+      unless (params[:newcategory] == "")
+        MenuCategory.find(category.id).update(name: params[:newcategory])
+      end
       if params[:name].present? && params[:price].present? && params[:description].present?
         redirect_to create_menu_item_path(
           menu_category_id: category.id,
@@ -38,8 +39,13 @@ class MenuCategoriesController < ApplicationController
           description: params[:description],
         )
       else
-        flash[:success] = "#{params[:newcategory]} Category Updated .\n Enter item details to add menu"
-        redirect_to new_menu_item_path
+        if (params[:newcategory] == "")
+          flash[:error] = "No category updated"
+          redirect_to new_menu_item_path
+        else
+          flash[:success] = "#{params[:newcategory]} Category Updated .\n Enter item details to add menu"
+          redirect_to new_menu_item_path
+        end
       end
     end
   end
