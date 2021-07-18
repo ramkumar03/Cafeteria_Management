@@ -23,10 +23,12 @@
           <%= link_to "Menu",
                       menu_categories_path,
                       class: "UsersForm-menubutton" %>
-          <%= link_to "Edit Menu",
-                      new_menu_item_path,
-                      method: "GET",
-                      class: "UsersForm-menubutton" %>
+          <% if @current_user.role == "owner" %>
+            <%= link_to "Edit Menu",
+                        new_menu_item_path,
+                        method: "GET",
+                        class: "UsersForm-menubutton" %>
+          <% end %>
         </span>
 
         <%= link_to "Sign out",
@@ -39,6 +41,9 @@
     <% end %>
     <% if flash[:error] %>
       <p class="FlashMessage"><%= flash[:error] %></p>
+    <% end %>
+    <% if flash[:success] %>
+      <p class="SuccessMessage"><%= flash[:success] %></p>
     <% end %>
     <%= yield %>
   </body>

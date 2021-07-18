@@ -1,17 +1,27 @@
-<main class="UsersNewPage">
+<main class="MenuItemPage">
 	<div class="UsersNew-Title">Add Menu Items
 			<%= link_to "Home", "/",
                class: "UsersForm-home" %>
 	</div>
 
-	<section class="UsersForm">
+	<section class="MenuItemForm">
 		<%= form_with(url: create_menu_category_path) do |menuitem| %>
 
-			<div class="UsersForm-section">
+		<p class="UsersForm-section">Select a Category to add items to it or Update Category name</p>
+
+			<div class="MenusForm-section">
 				<p>Category: </p>
-				<%= menuitem.text_field :category,
-                            class: "UsersForm-input",
-                            autofocus: true %>
+
+			<%= render partial: "categories", locals: {
+                menuitem: menuitem,
+              } %>
+
+			</div>
+			<div class="UsersForm-section">
+				<p>	New/Update Category: </p>
+				<%= menuitem.text_field :newcategory,
+                            placeholder: "create or update a category",
+                            class: "UsersForm-input" %>
 			</div>
 
       <div class="UsersForm-section">
@@ -33,7 +43,7 @@
 			</div>
 
 			<div class="UsersForm-section">
-				<%= menuitem.submit "Add Item to Menu",
+				<%= menuitem.submit "Confirm Changes",
                         class: "UsersForm-Submit" %>
 			</div>
 		<% end %>

@@ -1,0 +1,14 @@
+<div style="display:flexbox; margin-left:45%;width:400px">
+
+
+    <% MenuCategory.order(:id).each do |category| %>
+      	<div style="display: flex; margin:3%;max-width:300px;">
+									<%= menuitem.radio_button(:category,
+                                   "#{category.id}") %>
+																		<%= category.name %></div>
+
+		<% end %>
+
+    </div>
+
+</div>

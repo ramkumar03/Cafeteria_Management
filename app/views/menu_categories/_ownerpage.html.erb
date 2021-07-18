@@ -1,0 +1,46 @@
+<% menu_categories.order(:id).each do |category| %>
+
+        <div class="MenuCategory-Title">
+        <span><%= category.name %></span>
+
+          <%= form_with(url: "/menu_categories/#{category.id}",
+                        method: "PUT") do %>
+            <%= submit_tag(category.status ? "disable" : "enable",
+                           class: category.status ? "UsersForm-cartbutton" : "UsersForm-Submit") %>
+        <% end %>
+        </div>
+
+
+
+        <ul class="MenuCategory-Section">
+
+            <% MenuItem.order(:id).get_menu_items(category.id).map do |item| %>
+
+
+                    <li class= "MenuItem">
+
+                        <div class="MenuItem-header">
+                            <span class="MenuItem-title"><%= item.name %></span>
+                            <span class="MenuItem-price">₹ <%= item.price %></span>
+
+                            <%= form_with(url: "/menu_items/#{item.id}",
+                                          method: "PUT") do %>
+                                <%= submit_tag(item.availability ? "disable" : "enable",
+                                               class: item.availability ? "UsersForm-cartbutton" : "UsersForm-Submit") %>
+
+                            <% end %>
+                            <%= form_with(url: "/menu_items/#{item.id}",
+                                          method: "DELETE") do %>
+                                <%= submit_tag("Remove",
+                                               class: "UsersForm-menubutton") %>
+                            <% end %>
+                        </div>
+
+                        <p class="MenuItem-description"><%= item.description %></p>
+                    </li>
+
+            <% end %>
+
+        </ul>
+
+<% end %>
