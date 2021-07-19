@@ -58,8 +58,7 @@
         <div style="display: flex; justify-content: space-around;margin:10%;">
         Address: -
         <%= form_with(url: "/orders/#{CartItem.total_amount(@current_user.id)}",
-                      method: "POST",
-                      class: "Checkout") do |userorder| %>
+                      method: "POST") do |userorder| %>
 
         <%= userorder.text_area :deliver_address, size: "50x8" %>
 

@@ -4,7 +4,7 @@
 
     <div style="margin:2%; padding:2%;"><%= form_with(url: reports_path, method: "GET") do |filterdate| %>
 
-      <section class="OrdersTable-Title">
+      <section class="OrdersTable-Title" style="border-radius:0;box-shadow:none;">
 
         <%= filterdate.date_field(:date_first, required: true, class: "FilterOrder-date") %>
         <%= filterdate.date_field(:date_last, required: true, class: "FilterOrder-date") %>
@@ -16,9 +16,9 @@
     <% end %>
 
 
-    <section class="OrdersTable-Title">
-      <span>Total Orders: - <%= @orders.count %></span>
-      <span> Income: - <%= @orders.sum(:total_amount) %></span>
+    <section class="OrdersTable-Title" style="border-radius:0;box-shadow:none;">
+      <span>Total Orders: - <span class="OrderItem-price"><%= @orders.count %></span></span>
+      <span> Income: - <span class="OrderItem-price">₹<%= @orders.sum(:total_amount) %></span></span>
     </section>
 
   </div>

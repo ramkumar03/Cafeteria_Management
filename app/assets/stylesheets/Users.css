@@ -6,7 +6,7 @@
   line-height: 1;
   max-width: 900px;
   letter-spacing: 0.1px;
-  background-color: rgb(211, 221, 255);
+  background-color: rgb(211, 239, 255);
   box-shadow: 1px 10px 20px #aaaaaa;
   border-radius: 20px;
 }
@@ -28,10 +28,14 @@
 }
 .UserSessionBlock {
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 98%;
   display: flex;
   padding: 1%;
+  z-index: 1;
   justify-content: space-between;
-  background-color: dimgray;
+  background-color: rgb(42, 44, 65);
   color: ivory;
   font-family: sans-serif;
   font-size: 18;

@@ -17,13 +17,20 @@
           <span class="UserSession-name">
             <%= @current_user.role.capitalize + " : " + @current_user.first_name.capitalize + " " + @current_user.last_name.capitalize %>
           </span>
-         <%= link_to "Orders",
-                     orders_path,
-                     class: "UsersForm-cartbutton" %>
+
           <%= link_to "Menu",
                       menu_categories_path,
                       class: "UsersForm-menubutton" %>
+
+
+           <%= link_to "Orders",
+                       orders_path,
+                       class: "UsersForm-cartbutton" %>
+
           <% if @current_user.role == "owner" %>
+          <%= link_to " Sales ",
+                      reports_path,
+                      class: "UsersForm-cartbutton" %>
             <%= link_to "Edit Menu",
                         new_menu_item_path,
                         method: "GET",
@@ -34,9 +41,7 @@
             <%= link_to "Add New User",
                         new_user_path,
                         class: "UsersForm-Submit" %>
-            <%= link_to " Sales ",
-                        reports_path,
-                        class: "UsersForm-cartbutton" %>
+
           <% end %>
         </span>
 
@@ -48,6 +53,9 @@
 
       </div>
     <% end %>
+
+
+    <article style="margin-top:5%">
     <% if flash[:error] %>
       <p class="FlashMessage"><%= flash[:error] %></p>
     <% end %>
@@ -55,5 +63,6 @@
       <p class="SuccessMessage"><%= flash[:success] %></p>
     <% end %>
     <%= yield %>
+    </article>
   </body>
 </html>

@@ -4,8 +4,7 @@ class MenuItem < ActiveRecord::Base
 
   validates :name,
             presence: true,
-            length: { minimum: 4 },
-            uniqueness: { case_sensitive: false }
+            length: { minimum: 4 }
   validates :price, presence: true
   validates :description, presence: true
 

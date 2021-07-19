@@ -10,7 +10,7 @@ class ReportsController < ApplicationController
       end
       render "index"
     else
-      render "/"
+      redirect_to "/"
     end
   end
 end

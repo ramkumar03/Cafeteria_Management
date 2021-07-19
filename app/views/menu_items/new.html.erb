@@ -7,45 +7,50 @@
 	<section class="MenuItemForm">
 		<%= form_with(url: create_menu_category_path) do |menuitem| %>
 
-			<p class="UsersForm-section">Select a Category to add items to it or Update Category name</p>
 
-				<div class="MenusForm-section">
-					<p>Category: </p>
+				<p class="UsersForm-section">Select a Category to add items to it or Update Category name</p>
 
-				<%= render partial: "categories", locals: {
-									menuitem: menuitem,
-								} %>
+					<div class="MenusForm-section">
+						<p>Category: </p>
 
-				</div>
-				<div class="UsersForm-section">
-					<p>	New/Update Category: </p>
-					<%= menuitem.text_field :newcategory,
-															placeholder: "create or update a category",
-															class: "UsersForm-input" %>
-				</div>
+						<%= render partial: "categories", locals: {
+                   menuitem: menuitem,
+                 } %>
 
-				<div class="UsersForm-section">
-					<p>	Item Name: </p>
-					<%= menuitem.text_field :name,
-															class: "UsersForm-input" %>
-				</div>
 
-				<div class="UsersForm-section">
-						<p>Price(INR): </p>
-				<%= menuitem.number_field :price,
-															class: "UsersForm-input" %>
-				</div>
+					</div>
+					<div class="UsersForm-section" >
+						<p>	New/Update Category: </p>
+						<%= menuitem.text_field :newcategory,
+                              placeholder: "create or update a category",
+                              class: "UsersForm-input" %>
+					</div>
 
-				<div class="UsersForm-section">
-					<p>Description:</p>
-					<%= menuitem.text_area :description,
-														class: "UsersForm-input" %>
-				</div>
 
-				<div class="UsersForm-section">
-					<%= menuitem.submit "Confirm Changes",
-													class: "UsersForm-Submit" %>
-				</div>
+
+					<div class="UsersForm-section">
+						<p>	Item Name: </p>
+						<%= menuitem.text_field :name,
+                              class: "UsersForm-input" %>
+					</div>
+
+					<div class="UsersForm-section">
+								<p>Price(INR): </p>
+						<%= menuitem.number_field :price,
+                                class: "UsersForm-input" %>
+					</div>
+
+					<div class="UsersForm-section">
+						<p>Description:</p>
+						<%= menuitem.text_area :description,
+                             class: "UsersForm-input" %>
+					</div>
+
+					<div class="UsersForm-section">
+						<%= menuitem.submit "Confirm Changes",
+                          class: "UsersForm-Submit" %>
+					</div>
+
 			<% end %>
 	</section>
 
