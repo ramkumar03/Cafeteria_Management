@@ -12,7 +12,7 @@
 
     </div>
 
-    <% @orders.order(:ordered_at).each do |order| %>
+    <% @orders.order(:delivered_at).reverse_order.each do |order| %>
         <div class="OrderItem">
 
             <span>
