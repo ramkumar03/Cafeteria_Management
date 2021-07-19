@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
       ordertype = true #online
     end
 
-    order = Order.create!(
+    new_order = Order.new(
       user_id: @current_user.id,
       ordered_at: DateTime.now,
       total_amount: params[:total_amount],
@@ -19,7 +19,13 @@ class OrdersController < ApplicationController
       online_order: ordertype,
     )
 
-    redirect_to create_order_item_path(id: order.id)
+    if new_order.save
+      flash[:success] = "Order Placed"
+      redirect_to create_order_item_path(id: new_order.id)
+    else
+      flash[:error] = new_order.errors.full_messages.join(", ")
+      redirect_to "/"
+    end
   end
 
   def update
