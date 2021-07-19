@@ -1,0 +1,62 @@
+<main class="OrderPageMain">
+  <p class="OrderTitle">Sales Report</p>
+
+
+    <div style="margin:2%; padding:2%;"><%= form_with(url: reports_path, method: "GET") do |filterdate| %>
+
+      <section class="OrdersTable-Title">
+
+        <%= filterdate.date_field(:date_first, required: true, class: "FilterOrder-date") %>
+        <%= filterdate.date_field(:date_last, required: true, class: "FilterOrder-date") %>
+        <%= filterdate.submit("FILTER", class: "UsersForm-Submit") %>
+        <%= link_to "Clear Filter", reports_path, class: "UsersForm-menubutton" %>
+
+      </section>
+
+    <% end %>
+
+
+    <section class="OrdersTable-Title">
+      <span>Total Orders: - <%= @orders.count %></span>
+      <span> Income: - <%= @orders.sum(:total_amount) %></span>
+    </section>
+
+  </div>
+
+  <div class="OrdersTable">
+      <div class="OrdersTable-Title">
+          <span>Ordered By</span>
+          <span>Ordered At</span>
+          <span>Delivery Status</span>
+          <span>Bill Amount</span>
+
+      </div>
+
+    <% @orders.order(:ordered_at).each do |order| %>
+      <div class="OrderItem">
+      <span>
+
+        <% if order.online_order %>
+
+          <%= User.find(order.user_id).first_name + " " + User.find(order.user_id).last_name %>
+
+        <% else %>
+
+              Walk-in Customer
+
+        <% end %>
+
+      </span>
+      <span class="OrderItem-date">
+              <%= order.ordered_at.to_s(:long) %>
+      </span>
+      <span class="OrderItem-date">
+                <%= order.delivered_at ? order.delivered_at.to_s(:short) : "pending delivery" %>
+      </span>
+      <span>
+        <%= link_to "₹#{order.total_amount}", order_items_path(id: order.id), method: "GET", class: "UsersForm-cartbutton" %>
+      </span>
+      </div>
+    <% end %>
+  </div>
+</main>
