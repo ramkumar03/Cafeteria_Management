@@ -2,9 +2,13 @@
     <% if category.status %>
         <div class="MenuCategory-Title">
             <%= category.name %>
+            <button onclick="toggler('<%= category.name %>')" class="UsersForm-menubutton"> ☰ </button>
+
+
         </div>
 
-        <ul class="MenuCategory-Section">
+        <ul class="MenuCategory-Section" id = "<%= category.name %>" style="display:block;">
+
 
             <% MenuItem.order(:id).get_menu_items(category.id).map do |item| %>
 

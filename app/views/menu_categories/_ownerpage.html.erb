@@ -7,18 +7,19 @@
             </span>
 
 
+            <span style="display:flex;margin-right:5%;">
             <%= form_with(url: "/menu_categories/#{category.id}",
                           method: "PUT") do %>
             <%= submit_tag(category.status ? "disable" : "enable",
                            class: category.status ? "UsersForm-cartbutton" : "UsersForm-Submit") %>
             <% end %>
-
-
+            <button onclick="toggler('<%= category.name %>')" style="margin:0px 10%;" class="UsersForm-menubutton"> ☰ </button>
+            </span>
         </div>
 
 
 
-        <ul class="MenuCategory-Section">
+        <ul class="MenuCategory-Section" id = "<%= category.name %>" style="display:block;">
 
             <% MenuItem.order(:id).get_menu_items(category.id).map do |item| %>
 
