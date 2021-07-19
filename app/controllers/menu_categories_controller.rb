@@ -56,4 +56,9 @@ class MenuCategoriesController < ApplicationController
     menucategory.save!
     redirect_to menu_categories_path
   end
+
+  def destroy
+    MenuCategory.find(params[:id]).destroy
+    redirect_to menu_categories_path
+  end
 end

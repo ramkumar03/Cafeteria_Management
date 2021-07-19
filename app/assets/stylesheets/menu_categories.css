@@ -12,6 +12,12 @@
   display: inline-block;
   float: left;
 }
+.UnavailableText {
+  padding: 1% 2%;
+  color: rgb(255, 52, 52);
+  border: 1px solid rgb(255, 52, 52);
+  border-radius: 20px;
+}
 .CartCategoryPage {
   display: inline-block;
   float: right;
@@ -35,6 +41,7 @@
   border-radius: 20px;
 }
 .MenuItem-header {
+  align-items: center;
   border-bottom: solid 0.5px rgb(138, 75, 255);
   display: flex;
   justify-content: space-between;

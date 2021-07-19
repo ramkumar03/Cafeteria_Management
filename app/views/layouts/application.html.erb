@@ -13,11 +13,11 @@
   <body>
     <% if @current_user.present? %>
       <div class="UserSessionBlock">
-        <span style="width: 600px">
+        <span style="width: 1000px">
           <span class="UserSession-name">
-            <%= @current_user.first_name.capitalize + " " + @current_user.last_name.capitalize %>
+            <%= @current_user.role.capitalize + " : " + @current_user.first_name.capitalize + " " + @current_user.last_name.capitalize %>
           </span>
-         <%= link_to "My Orders",
+         <%= link_to "Orders",
                      orders_path,
                      class: "UsersForm-cartbutton" %>
           <%= link_to "Menu",
@@ -28,6 +28,12 @@
                         new_menu_item_path,
                         method: "GET",
                         class: "UsersForm-menubutton" %>
+            <%= link_to "Users List",
+                        users_path,
+                        class: "UsersForm-Submit" %>
+            <%= link_to "Add New User",
+                        new_user_path,
+                        class: "UsersForm-Submit" %>
           <% end %>
         </span>
 

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/menu_categories", to: "menu_categories#index"
   post "/menu_categories", to: "menu_categories#create", as: :create_menu_category
   put "/menu_categories/:id", to: "menu_categories#update"
+  delete "/menu_categories/:id", to: "menu_categories#destroy"
 
   get "/new_menu_item", to: "menu_items#new", as: :new_menu_item
   get "/create_menu_item", to: "menu_items#create", as: :create_menu_item

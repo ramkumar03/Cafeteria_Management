@@ -12,7 +12,7 @@
 
     </div>
 
-    <% @orders.order(:ordered_at).each_with_index do |order, index| %>
+    <% @orders.order(:ordered_at).each do |order| %>
         <div class="OrderItem">
 
             <span>
@@ -22,8 +22,14 @@
                           class: "UsersForm-Submit" %>
             </span>
             <% if @current_user.role != "customer" %>
-            <span ><%= User.find(order.user_id).first_name %></span>
-        <% end %>
+              <span >
+
+
+                      <%= order.online_order ? User.find(order.user_id).first_name : "Walk-in Customer" %>
+
+
+              </span>
+            <% end %>
             <span class="OrderItem-date">
               <%= order.ordered_at.to_s(:long) %>
             </span>
@@ -35,14 +41,15 @@
               </span>
 
               <% if @current_user.role != "customer" %>
-                <span><%= form_with(url: "/orders/#{order.id}",
-                                    method: "PUT") do %>
-                        <%= submit_tag(order.delivered_at ? "Delivered" : "Set Delivered",
-                                       disabled: order.delivered_at ? true : false,
-                                       class: "UsersForm-cartbutton") %>
+                <span>
+                    <%= form_with(url: "/orders/#{order.id}",
+                                  method: "PUT") do %>
+                    <%= submit_tag(order.delivered_at ? "Delivered" : "Set Delivered",
+                                   disabled: order.delivered_at ? true : false,
+                                   class: "UsersForm-cartbutton") %>
                     <% end %>
                 </span>
-            <% end %>
+              <% end %>
             </span>
         </div>
     <% end %>

@@ -1,6 +1,6 @@
 <% menu_categories.order(:id).each do |category| %>
     <% if category.status %>
-        <div class="MenuCategory-Title">
+        <div style="background-color:ivory;border-radius:20px;padding:1%;margin: 1% 0;"><div class="MenuCategory-Title">
             <%= category.name %>
             <button onclick="toggler('<%= category.name %>')" class="UsersForm-menubutton"> ☰ </button>
 
@@ -12,27 +12,34 @@
 
             <% MenuItem.order(:id).get_menu_items(category.id).map do |item| %>
 
-                <% if item.availability %>
+
 
                     <li class= "MenuItem">
 
                         <div class="MenuItem-header">
                             <span class="MenuItem-title"><%= item.name %></span>
                             <span class="MenuItem-price">₹ <%= item.price %></span>
-
+                        <% if item.availability %>
                             <%= form_with(url: "/cart_items?menu_item_id=#{item.id}",
                                           method: "POST") do %>
                                 <%= submit_tag("Add to cart",
                                                class: "UsersForm-Submit") %>
                             <% end %>
+                        <% else %>
+                           <span class="UnavailableText">Unavailable</span>
+                        <% end %>
                         </div>
 
                         <p class="MenuItem-description"><%= item.description %></p>
                     </li>
 
-                <% end %>
+
             <% end %>
 
-        </ul>
+        </ul></div>
+    <% else %>
+        <div style="background-color:ivory;border-radius:20px;padding:1%;margin: 1% 0;"><div class="MenuCategory-Title">
+            <%= category.name %> <span class="UnavailableText">Unavailable</span>
+        </div>
     <% end %>
 <% end %>

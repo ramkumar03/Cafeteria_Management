@@ -1,11 +1,25 @@
 <main class="UsersNewPage">
 	<div class="UsersNew-Title">Sign Up
 			<%= link_to "Home", "/",
-										class: "UsersForm-home" %>
+               class: "UsersForm-home" %>
 	</div>
 
 	<section class="UsersForm">
 		<%= form_with(url: users_path) do |form| %>
+
+			<% if @current_user.present? && @current_user.role == "owner" %>
+				<div class="UsersForm-section" style="align-items:baseline;">
+					<p>Role: </p>
+					<div style="display: flex; justify-contents: space-between;margin-right:15%; ">
+									<div><%= form.radio_button(:role,
+                                    "owner") %>
+																		Owner</div>
+									<div><%= form.radio_button(:role,
+                                    "clerk") %>
+																		Clerk</div>
+					</div>
+				</div>
+			<% end %>
 			<div class="UsersForm-section">
 				<p>	First Name:</p>
 				<%= form.text_field :first_name, class: "UsersForm-input", autofocus: true %>

@@ -1,18 +1,25 @@
 <% menu_categories.order(:id).each do |category| %>
 
         <div class="MenuCategory-Title">
-            <span>
-                <%= category.name %>
+            <span style="display:flex;align-items:center;">
+                <p style="margin-right:15%;"><%= category.name %></p>
+
+                <%= form_with(url: "/menu_categories/#{category.id}",
+                              method: "PUT") do %>
+            <%= submit_tag(category.status ? "disable" : "enable",
+                           class: category.status ? "UsersForm-cartbutton" : "UsersForm-Submit") %>
+            <% end %>
 
             </span>
 
 
             <span style="display:flex;margin-right:5%;">
+
             <%= form_with(url: "/menu_categories/#{category.id}",
-                          method: "PUT") do %>
-            <%= submit_tag(category.status ? "disable" : "enable",
-                           class: category.status ? "UsersForm-cartbutton" : "UsersForm-Submit") %>
-            <% end %>
+                          method: "DELETE") do %>
+                                <%= submit_tag("Remove",
+                                               class: "UsersForm-menubutton") %>
+                            <% end %>
             <button onclick="toggler('<%= category.name %>')" style="margin:0px 10%;" class="UsersForm-menubutton"> ☰ </button>
             </span>
         </div>

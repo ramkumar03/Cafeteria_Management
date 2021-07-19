@@ -1,0 +1,34 @@
+<main class="OrderPageMain">
+<p class="OrderTitle">Users Table</p>
+
+<div class="OrdersTable">
+    <div class="OrdersTable-Title">
+        <span>S. no</span>
+        <span>Name</span>
+        <span>Role</span>
+        <span>Email Address</span>
+
+    </div>
+
+     <% User.all.each_with_index do |user, serial| %>
+        <div class="OrderItem">
+
+            <span>
+              <%= serial + 1 %>
+            </span>
+
+            <span >
+              <%= user.first_name.capitalize + " " + user.last_name.capitalize %>
+            </span>
+
+            <span>
+              <%= user.role %>
+            </span>
+
+            <span style="margin-right:2%;">
+              <%= user.email %>
+            </span>
+        </div>
+    <% end %>
+</div>
+</main>
