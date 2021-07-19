@@ -1,7 +1,7 @@
 <main class="UsersNewPage">
 	<div class="UsersNew-Title">Sign in
 		<%= link_to "Home", "/",
-									class: "UsersForm-home" %>
+              class: "UsersForm-home" %>
 	</div>
 
 
@@ -10,12 +10,12 @@
 
 			<div class="UsersForm-section">
 					<p>Email:</p>
-			<%= form.email_field :email, class: "UsersForm-input" %>
+			<%= form.email_field :email, required: true, class: "UsersForm-input" %>
 			</div>
 
 			<div class="UsersForm-section">
 				<p>Password:</p>
-				<%= form.password_field :password, class: "UsersForm-input" %>
+				<%= form.password_field :password, required: true, class: "UsersForm-input" %>
 			</div>
 
 			<div class="UsersForm-section">
