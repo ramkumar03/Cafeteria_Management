@@ -55,16 +55,24 @@
                     <%= submit_tag("Clear", class: "UsersForm-cartbutton") %>
                 <% end %>
         </div>
-        <div style="display: flex; justify-content: space-around;margin:10%;">
-        Address: -
-        <%= form_with(url: "/orders/#{CartItem.total_amount(@current_user.id)}",
-                      method: "POST") do |userorder| %>
 
-        <%= userorder.text_area :deliver_address, size: "50x8" %>
 
-        </div>
 
-        <%= userorder.submit "Checkout", class: "UsersForm-Submit" %>
+            <%= form_with(url: "/orders/#{CartItem.total_amount(@current_user.id)}",
+                          method: "POST") do |userorder| %>
+
+        <% if @current_user.role == "customer" %>
+            <div style="display: flex; justify-content: space-around;margin:10%;">
+             Address: -
+
+            <%= userorder.text_area :deliver_address, size: "50x8" %>
+            </div>
+
+
+         <% end %>
+
+
+        <div style="text-align: center;"><%= userorder.submit "Checkout", class: "UsersForm-Submit" %></div>
 
         <% end %>
 

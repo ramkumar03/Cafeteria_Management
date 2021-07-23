@@ -23,14 +23,27 @@
             <div class="OrderItem-description">
                 <p class="OrdersDetail-title">Delivered to:</p>
                 <div style="margin-left:20%;">
-                <% if Order.find(@order_items.first.order_id).online_order %>
-                    <p>
-                    <%= User.find(Order.find(@order_items.first.order_id).user_id).first_name.capitalize + " " + User.find(Order.find(@order_items.first.order_id).user_id).last_name.capitalize %>
-                    </p>
-                <% else %>
-                    <p>Walk-in Customer</p>
-                <% end %>
-                <p><%= Order.find(@order_items.first.order_id).deliver_address %></p>
+
+                <p style="font-weight: 600;font-size:18px;">
+
+                    <% if Order.find(@order_items.first.order_id).online_order %>
+                        <%= User.find(Order.find(@order_items.first.order_id).user_id).first_name.capitalize + " " + User.find(Order.find(@order_items.first.order_id).user_id).last_name.capitalize %>
+                    <% else %>
+                        Walk-in Customer
+                    <% end %>
+
+                </p>
+
+                <p style="padding: 2% 0;">
+
+                    <% if Order.find(@order_items.first.order_id).online_order %>
+                            <%= Order.find(@order_items.first.order_id).deliver_address %>
+                    <% else %>
+                            Order placed by <%= User.find(Order.find(@order_items.first.order_id).user_id).first_name.capitalize + " " + User.find(Order.find(@order_items.first.order_id).user_id).last_name.capitalize %>
+                    <% end %>
+
+                </p>
+
                 </div>
             </div>
         </div>
